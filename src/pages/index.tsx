@@ -267,16 +267,16 @@ export default function ROICalculator() {
     const paybackPeriod = annualInvestment / (totalBenefits / 12);
 
     return {
-      roi: roi.toFixed(0),
-      annualSavings: totalBenefits.toFixed(0),
-      paybackMonths: paybackPeriod.toFixed(1),
-      developmentSavings: (experimentationSavings + dataPreparationSavings).toFixed(0),
-      deploymentSavings: (deploymentSavings + failureReductionSavings).toFixed(0),
-      infrastructureSavings: infrastructureSavings.toFixed(0),
-      operationalSavings: (monitoringSavings + incidentResolutionSavings).toFixed(0),
-      performanceBenefits: (accuracyBenefit + latencyBenefit).toFixed(0),
-      complianceSavings: (complianceSavings + auditSavings).toFixed(0),
-      businessImpact: (timeToMarketBenefit + customerRetentionBenefit).toFixed(0),
+      roi: Math.round(roi),
+      annualSavings: Math.round(totalBenefits),
+      paybackMonths: Math.round(paybackPeriod),
+      developmentSavings: Math.round(experimentationSavings + dataPreparationSavings),
+      deploymentSavings: Math.round(deploymentSavings + failureReductionSavings),
+      infrastructureSavings: Math.round(infrastructureSavings),
+      operationalSavings: Math.round(monitoringSavings + incidentResolutionSavings),
+      performanceBenefits: Math.round(accuracyBenefit + latencyBenefit),
+      complianceSavings: Math.round(complianceSavings + auditSavings),
+      businessImpact: Math.round(timeToMarketBenefit + customerRetentionBenefit),
     };
   };
 
@@ -336,7 +336,7 @@ export default function ROICalculator() {
             size: 12,
           },
           callback: function(tickValue: number | string, index: number, ticks: any[]) {
-            return `$${Number(tickValue).toLocaleString()}`;
+            return `$${formatNumber(Number(tickValue))}`;
           },
         },
         grid: { 
@@ -428,7 +428,7 @@ export default function ROICalculator() {
                   <RoiIcon />
                   <div className="min-w-0">
                     <p className="text-sm text-gray-300 font-medium">ROI</p>
-                    <p className="text-3xl font-bold text-gray-400">{results.roi}%</p>
+                    <p className="text-3xl font-bold text-gray-400">{formatNumber(Number(results.roi))}%</p>
                   </div>
                 </div>
                 <div className="bg-gray-900/50 p-6 rounded-lg backdrop-blur-sm flex items-start space-x-4">
